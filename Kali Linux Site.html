@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>⚡ Kali Linux - Guia Hacker</title>
+  <style>
+    /* Estilo hacker */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      color: #00ffcc;
+      margin-bottom: 10px;
+      text-shadow: 0 0 5px #00ffcc;
+    }
+
+    p, li {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .terminal {
+      background-color: #111;
+      color: #00ff00;
+      padding: 20px;
+      border: 2px solid #0f0;
+      border-radius: 8px;
+      font-family: monospace;
+      box-shadow: 0 0 15px #0f0;
+    }
+
+    #output {
+      white-space: pre-wrap;
+      min-height: 150px;
+      margin-bottom: 10px;
+    }
+
+    #cmdInput {
+      width: 100%;
+      background-color: #000;
+      color: #0f0;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .type-effect::after {
+      content: "_";
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #0f0;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="type-effect">👨‍💻 Kali Linux - Guia Hacker</h1>
+
+  <div class="section">
+    <h2>🔍 O que é Kali Linux?</h2>
+    <p>Kali Linux é uma distribuição poderosa baseada em Linux usada para testes de penetração, auditoria de segurança e análise forense digital. É mantida pela Offensive Security.</p>
+  </div>
+
+  <div class="section">
+    <h2>📥 Como Baixar</h2>
+    <p>Acesse o site oficial para baixar a versão mais recente:</p>
+    <p><a href="https://www.kali.org/get-kali/" target="_blank">https://www.kali.org/get-kali/</a></p>
+  </div>
+
+  <div class="section">
+    <h2>⚙️ Como Usar</h2>
+    <p>Você pode usar o Kali em máquinas virtuais como VirtualBox ou VMware, ou instalar diretamente no seu computador. Ele já vem com ferramentas como:</p>
+    <ul>
+      <li>Nmap (varredura de rede)</li>
+      <li>Metasploit (exploração de vulnerabilidades)</li>
+      <li>Wireshark (análise de pacotes)</li>
+      <li>Hydra, John, Aircrack-ng e mais</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📜 Comandos Básicos</h2>
+    <ul>
+      <li><code>ls</code> — Lista os arquivos e pastas</li>
+      <li><code>cd [pasta]</code> — Acessa uma pasta</li>
+      <li><code>pwd</code> — Mostra o diretório atual</li>
+      <li><code>ifconfig</code> — Mostra interfaces de rede</li>
+      <li><code>nmap</code> — Escaneia dispositivos da rede</li>
+      <li><code>clear</code> — Limpa o terminal</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2>💻 Simulador de Terminal</h2>
+    <div class="terminal">
+      <div id="output">Digite um comando abaixo e pressione Enter.</div>
+      <input type="text" id="cmdInput" placeholder="Digite um comando aqui...">
+    </div>
+  </div>
+
+  <script>
+    const input = document.getElementById("cmdInput");
+    const output = document.getElementById("output");
+
+    input.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        const command = input.value.trim();
+        input.value = "";
+
+        let response = "";
+        switch (command) {
+          case "ls":
+            response = "Documentos  Downloads  Ferramentas  root";
+            break;
+          case "pwd":
+            response = "/root/";
+            break;
+          case "clear":
+            output.innerText = "";
+            return;
+          case "ifconfig":
+            response = "eth0: inet 192.168.1.5  netmask 255.255.255.0  broadcast 192.168.1.255";
+            break;
+          case "nmap":
+            response = "Starting Nmap 7.91...\nHost: 192.168.1.1 is up\nPort 80: OPEN\nPort 22: OPEN";
+            break;
+          default:
+            response = `Comando não reconhecido: ${command}`;
+        }
+
+        output.innerText += `\nkali@root:~# ${command}\n${response}`;
+        output.scrollTop = output.scrollHeight;
+      }
+    });
+  </script>
+
+</body>
+</html>
